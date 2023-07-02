@@ -1,0 +1,31 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Users List</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let tutorial of tutorials">
+          <tr *ngIf="tutorial && tutorial.score && tutorial.score > 90">
+            <td>{{ tutorial.name }}</td>
+            <td>{{ tutorial.score }}</td>
+            <td
+              [ngClass]="{
+                'text-success': tutorial.winner,
+                'text-danger': !tutorial.winner
+              }"
+            >
+              {{ tutorial.winner ? "Winner" : "Not Winner" }}
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6"></div>
+</div>

@@ -1,0 +1,92 @@
+<div *ngIf="viewMode; else editable" class="my-4 bg-black m-4">
+  <div *ngIf="currentTutorial.id">
+    <h4>{{ currentTutorial.name }}</h4>
+    <div class="mb-2">
+      <label><strong>Name:</strong></label> {{ currentTutorial.name }}
+      <label><strong>Age:</strong></label>
+      {{ currentTutorial.age }}
+      <label><strong>Score:</strong></label>
+      {{ currentTutorial.score }}
+    </div>
+
+    <div class="mb-2">
+      <label><strong>Status:</strong></label>
+      {{ currentTutorial.winner ? "Winner" : "Not Winner" }}
+    </div>
+    <button class="badge badge-primary mr-2" *ngIf="currentTutorial.winner">
+      Player Already Winner
+    </button>
+    <h1 *ngIf="!currentTutorial.winner">
+      <button
+        type="button"
+        class="btn btn-primary"
+        disabled
+        data-bs-toggle="button"
+      >
+        Your About to set this player as a winner
+      </button>
+    </h1>
+    <button
+      *ngIf="!currentTutorial.winner"
+      class="badge badge-primary mr-2"
+      (click)="updatePublished(true)"
+    >
+      Confirm
+    </button>
+  </div>
+
+  <div *ngIf="!currentTutorial">
+    <br />
+    <p>Please click on a User...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentTutorial.id" class="edit-form my-4">
+    <h4 class="mb-4">{{ currentTutorial.name }}</h4>
+    <form>
+      <div class="form-group">
+        <label for="name" class="font-weight-bold">Name</label>
+        <p class="mb-2">{{ currentTutorial.name }}</p>
+      </div>
+      <div class="form-group">
+        <label for="age" class="font-weight-bold">Age</label>
+        <p class="mb-2">{{ currentTutorial.age }}</p>
+      </div>
+      <div class="form-group">
+        <label for="score" class="font-weight-bold">Score</label>
+        <p class="mb-2">{{ currentTutorial.score }}</p>
+      </div>
+
+      <div class="form-group">
+        <label class="font-weight-bold"><strong>Status:</strong></label>
+        <p class="mb-2">
+          {{ currentTutorial.winner ? "Winner" : "Not Winner" }}
+        </p>
+      </div>
+    </form>
+
+    <button
+      *ngIf="!currentTutorial.winner"
+      class="btn btn-primary btn-lg mr-2"
+      (click)="updatePublished(true)"
+    >
+      Set Winner
+    </button>
+
+    <button
+      type="submit"
+      class="btn btn-success btn-lg"
+      (click)="updateTutorial()"
+      routerLink="/tutorials"
+    >
+      Close
+    </button>
+    <p class="mt-4">{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentTutorial.id">
+    <br />
+    <p>Cannot access this User...</p>
+  </div>
+</ng-template>

@@ -1,0 +1,22 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Winners List</h4>
+
+    <table class="table table-striped table-hover bg-light">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tutorial of tutorials; let i = index">
+          <td>{{ tutorial.name }}</td>
+          <td>{{ tutorial.age }}</td>
+          <td>{{ tutorial.score }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
